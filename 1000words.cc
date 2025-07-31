@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     {
         checksum = (checksum * 31) + static_cast<unsigned char>(byte);
 
-        RGB_list.emplace_back((byte << 3) | (byte >> 5), (byte * 73) % 256, byte);
+        RGB_list.emplace_back(byte, (byte << 3) | (byte >> 5), (byte * 73) % 256);
     }
 
     infile.close();
