@@ -42,11 +42,28 @@ int main(int argc, char *argv[])
     std::vector<RGB> RGB_list;
 
     char byte;
+    int preset;
     while (infile.get(byte) && RGB_list.size() < 2000)
     {
+        if (checksum == 0)
+        {
+            preset = byte;
+        }
+
         checksum = (checksum * 31) + static_cast<unsigned char>(byte);
 
-        RGB_list.emplace_back(byte, (byte << 3) | (byte >> 5), (byte * 73) % 256);
+        switch (preset % 3)
+        {
+        case 0:
+            RGB_list.emplace_back(byte, (byte << 3) | (byte >> 5), (byte * 73) % 256);
+            break;
+        case 1:
+            RGB_list.emplace_back((byte << 3) | (byte >> 5), (byte * 73) % 256, byte);
+            break;
+        case 2:
+            RGB_list.emplace_back((byte * 73) % 256, byte, (byte << 3) | (byte >> 5));
+            break;
+        }
     }
 
     infile.close();
