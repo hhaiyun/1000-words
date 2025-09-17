@@ -18,7 +18,7 @@ The file is hashed, and every character is mapped to an RGB triplet.
 
 Modulo arithmetic is then used to extract parameters from the hash. Depending on these parameters, a combination of the following will be applied:
 
-- harmonize_RGBs(): Converts RGB to HSV, constrains hue/saturation/lightness, then converts back to RGB.
+- harmonize_RGBs(): converts RGB to HSV, constrains hue/saturation/lightness, then converts back to RGB
 
 - Pixel sort along each row
 
